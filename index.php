@@ -6,6 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Midterm</title>
 </head>
-<h1>John Roening Midterm INF653</h1>
+<h1>John Roening Midterm Project INF653</h1>
 
 </html>

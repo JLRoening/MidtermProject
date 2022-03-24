@@ -1,14 +1,11 @@
 <?php 
   class Database {
-
     private $hostname;
     private $database;
     private $username;
     private $password;
-
     private $conn;
 
-    // DB Connect
     public function connect() {
       $url = getenv('JAWSDB_URL');
       $dbparts = parse_url($url);
