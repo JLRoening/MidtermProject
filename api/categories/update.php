@@ -14,14 +14,13 @@
   $category = new Category($db);
   $data = json_decode(file_get_contents("php://input"));
 
-  if (missingParams($category->id, $category->category)) {
+  if (!property_exists($data, 'category') || !property_exists($data, 'id')) {
     echo json_encode(
       array('message' => 'Missing Required Parameters')
     );
     return;
   }
 
-  //Set ID to update
   $category->id = $data->id;
   $category->category = $data->category;
 
@@ -30,7 +29,15 @@
       array('id' => $category->id, 'category' => $category->category)
     );
   } else {
-       echo json_encode(
+      $category->category = -1;
+      $category->read_single(); 
+      if($category->category != -1){
+        echo json_encode(
+          array('id' => $category->id, 'category' => $category->category)
+        );
+      }else{
+      echo json_encode(
         array('message' => 'categoryId Not Found')
       );
     }
+  }

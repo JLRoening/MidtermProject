@@ -18,9 +18,9 @@
       'id' => $category->id,
       'category' => $category->category
     );
-    json_encode($category_arr);
+    echo json_encode($category_arr);
   }else{
-    json_encode(
+    echo json_encode(
       array('message' => 'Category Not Found')
     );
   }

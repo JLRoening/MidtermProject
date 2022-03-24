@@ -7,23 +7,21 @@
         header('Access-Control-Allow-Headers: Origin, Accept, Content-Type, X-Requested-With');
     }
 
-
     include_once '../../config/Database.php';
-    include_once '../../models/Author.php';
+    include_once '../../models/Quote.php';
 
     $database = new Database();
     $db = $database->connect();
 
-    $author = new Author($db);
+    $quote = new Quote($db);
     $method = $_SERVER['REQUEST_METHOD'];
 
-    switch ($method) 
-    {
+    switch ($method) {
     case 'GET':
         if(isset($_GET['id'])) {
             require 'read_single.php';
         }
-        else {
+        else{
             require 'read.php';
         }
         break;
@@ -36,7 +34,7 @@
     case 'DELETE':
         require 'delete.php'; 
         break;
-    default: 
-        echo 'ERROR';
+    default:
+        echo 'ERROR'; 
         break;
     }

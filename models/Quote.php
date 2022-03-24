@@ -218,8 +218,8 @@
   $this->id = htmlspecialchars(strip_tags($this->id));
 
   // Bind data
-  $stmt-> bindParam(':quote', $this->quote);
   $stmt-> bindParam(':id', $this->id);
+  $stmt-> bindParam(':quote', $this->quote);
   $stmt-> bindParam(':authorId', $this->authorId);
   $stmt-> bindParam(':categoryId', $this->categoryId);
 
@@ -240,7 +240,7 @@
     // Prepare Statement
     $stmt = $this->conn->prepare($query);
 
-    // clean data
+    // Clean data
     $this->id = htmlspecialchars(strip_tags($this->id));
 
     // Bind Data
@@ -248,13 +248,12 @@
 
     // Execute query
     try {
-      //code...
       if($stmt->execute()) {
         return $stmt->rowCount();
       }
     } catch (\Throwable $th) {
 
     }
-    return -1;
+    return false;
     }
   }

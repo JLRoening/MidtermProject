@@ -14,7 +14,7 @@
   $author = new Author($db);
   $data = json_decode(file_get_contents("php://input"));
 
-  if (missingParams($author->id, $author->author) {
+  if (!property_exists($data, 'author') || !property_exists($data, 'id')) {
     echo json_encode(
       array('message' => 'Missing Required Parameters')
     );
@@ -22,10 +22,23 @@
   }
 
   $author->id = $data->id;
+
   $author->author = $data->author;
 
   if($author->update()) {
     echo json_encode(
       array('id' => $author->id, 'author' => $author->author)
     );
+  } else {
+      $author->author = -1;
+      $author->read_single(); 
+      if($author->author != -1){
+        echo json_encode(
+          array('id' => $author->id, 'author' => $author->author)
+        );
+      } else {
+      echo json_encode(
+        array('message' => 'authorId Not Found')
+      );
+    }
   }

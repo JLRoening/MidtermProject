@@ -7,13 +7,10 @@
     private $conn;
 
     public function connect() {
-      $url = getenv('JAWSDB_URL');
-      $dbparts = parse_url($url);
-  
-      $hostname = $dbparts['host'];
-      $username = $dbparts['user'];
-      $password = $dbparts['pass'];
-      $database = ltrim($dbparts['path'],'/');
+      $hostname = 'uzb4o9e2oe257glt.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+      $username = 'casmgdvg9k7ur9e8';
+      $password = 'j91vj1e2lmbdjlaa';
+      $database = 'r73mbtgc4mub348o';
 
       try {
         $conn = new PDO("mysql:host=$hostname;dbname=$database", $username, $password);

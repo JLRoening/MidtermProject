@@ -138,6 +138,6 @@
     } catch (\Throwable $th) {
 
     }
-    return -1;
+    return false;
     }
   }
